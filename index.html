@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b16">
+  <meta name="description" content="PROGAME: juega gratis a videojuegos arcade directamente desde tu navegador.">
+  <meta property="og:type" content="website"><meta property="og:title" content="PROGAME — Arcade HTML5"><meta property="og:description" content="Juegos arcade gratis en tu navegador. Sin descargas ni registro.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎮%3C/text%3E%3C/svg%3E">
+  <title>PROGAME — Arcade HTML5</title>
+  <style>
+    :root{--bg:#090b16;--panel:#111528;--panel2:#171c33;--text:#f4f6ff;--muted:#9ca5c2;--line:rgba(255,255,255,.09);--cyan:#43e8f5;--purple:#8b5cf6;--pink:#ff4fa3;--lime:#b8f36b;--radius:22px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at 80% -10%,rgba(105,74,230,.18),transparent 35%),radial-gradient(ellipse at 5% 20%,rgba(40,195,218,.09),transparent 30%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:inherit;text-decoration:none}button,input{font:inherit}
+    .wrap{width:min(1180px,calc(100% - 44px));margin:auto}
+    header{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:950;letter-spacing:1.5px;font-size:22px}
+    .brand-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#080b18;font-size:21px;box-shadow:0 7px 25px #43e8f533}
+    .brand span:last-child{color:var(--cyan)}
+    nav{display:flex;gap:27px;color:var(--muted);font-size:14px;font-weight:650}
+    nav a:hover{color:white}
+    .header-right{display:flex;align-items:center;gap:12px}
+    .status{font-size:12px;color:#c7f8d8;background:#173125;border:1px solid #28583f;padding:8px 12px;border-radius:30px}
+    .menu-btn{display:none;border:1px solid var(--line);background:var(--panel);color:white;border-radius:10px;padding:8px 11px}
+    .hero{padding:66px 0 45px;display:grid;grid-template-columns:1.05fr .95fr;gap:35px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--cyan);font-size:11px;letter-spacing:2px;font-weight:850;text-transform:uppercase}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+    h1{font-size:clamp(42px,6.4vw,76px);line-height:.99;letter-spacing:-3.7px;margin:18px 0 18px;font-weight:950}
+    h1 em{font-style:normal;background:linear-gradient(90deg,var(--cyan),#a78bfa 65%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy{max-width:520px;color:var(--muted);font-size:16px;line-height:1.75;margin:0 0 26px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{border:0;border-radius:12px;padding:13px 19px;font-weight:800;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:9px}
+    .btn-primary{background:linear-gradient(100deg,var(--cyan),#7d9cff);color:#08111b;box-shadow:0 9px 30px #43e8f526}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 34px #43e8f54a}
+    .btn-ghost{background:#ffffff08;color:var(--text);border:1px solid var(--line)}
+    .btn-ghost:hover{background:#ffffff12}
+    .hero-art{position:relative;min-height:320px;border:1px solid #ffffff15;border-radius:28px;overflow:hidden;background:linear-gradient(145deg,#171c38,#101326 65%,#211536);box-shadow:0 25px 80px #0007}
+    .hero-art:before,.hero-art:after{content:"";position:absolute;border-radius:50%;filter:blur(2px)}
+    .hero-art:before{width:260px;height:260px;background:#4ce6f51c;top:-90px;right:-20px}
+    .hero-art:after{width:220px;height:220px;background:#a855f729;bottom:-110px;left:-50px}
+    .orbit{position:absolute;width:290px;height:290px;border:1px solid #ffffff20;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-25deg)}
+    .orbit:before{content:"";position:absolute;inset:27px;border:1px dashed #ffffff20;border-radius:50%}
+    .hero-console{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-7deg);width:210px;height:155px;border-radius:24px;background:linear-gradient(145deg,#29365a,#131a32);border:1px solid #ffffff35;box-shadow:0 22px 45px #0008;display:grid;place-items:center}
+    .console-screen{width:160px;height:104px;border-radius:13px;background:linear-gradient(135deg,#0c2030,#171339);border:2px solid #52668c;display:grid;place-items:center;font-size:54px;text-shadow:0 0 25px var(--cyan)}
+    .float-tag{position:absolute;padding:10px 13px;border:1px solid #ffffff25;background:#10162ddd;backdrop-filter:blur(12px);border-radius:12px;font-size:12px;font-weight:800;box-shadow:0 12px 25px #0005}
+    .tag-one{top:48px;left:25px;color:var(--lime)}.tag-two{right:22px;bottom:45px;color:var(--cyan)}.tag-three{right:26px;top:45px;color:#ff8bc2}
+    .hero-note{position:absolute;bottom:18px;left:22px;color:#aeb8d4;font-size:10px;letter-spacing:1.7px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 55px}
+    .stat{border:1px solid var(--line);background:#ffffff05;border-radius:15px;padding:15px 18px}
+    .stat strong{font-size:21px;display:block}.stat span{font-size:11px;color:var(--muted);letter-spacing:.8px;text-transform:uppercase}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:22px}
+    .section-kicker{font-size:10px;letter-spacing:2px;color:var(--purple);font-weight:900;text-transform:uppercase}
+    h2{font-size:30px;letter-spacing:-1px;margin:6px 0 0}
+    .section-sub{color:var(--muted);font-size:13px;margin:7px 0 0}
+    .tools{display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap}
+    .search{position:relative;flex:1;min-width:220px}
+    .search input{width:100%;height:44px;padding:0 15px 0 42px;border-radius:12px;background:#111528;border:1px solid var(--line);color:white;outline:none}
+    .search input:focus{border-color:#43e8f577;box-shadow:0 0 0 3px #43e8f512}
+    .search span{position:absolute;left:14px;top:11px;color:#8d98b8}
+    .filters{display:flex;gap:7px;flex-wrap:wrap}
+    .filter{border:1px solid var(--line);background:#111528;color:var(--muted);padding:10px 13px;border-radius:11px;font-size:12px;font-weight:750;cursor:pointer}
+    .filter.active,.filter:hover{background:#253047;color:var(--cyan);border-color:#43e8f555}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:19px}
+    .card{background:linear-gradient(160deg,#171c32,#101426);border:1px solid var(--line);border-radius:19px;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s;min-width:0}
+    .card:hover{transform:translateY(-6px);border-color:#7c82bc66;box-shadow:0 20px 45px #0005}
+    .cover{height:185px;position:relative;overflow:hidden;display:grid;place-items:center}
+    .cover:before{content:"";position:absolute;width:210px;height:210px;border:1px solid #ffffff26;border-radius:50%;box-shadow:0 0 0 22px #ffffff08,0 0 0 48px #ffffff05}
+    .cover:after{content:"";position:absolute;width:100%;height:100%;background:linear-gradient(0deg,#0d1022aa,transparent 70%)}
+    .cover-survive{background:radial-gradient(circle at 50% 45%,#47317b,#1b1741 60%,#11162d)}
+    .cover-worm{background:radial-gradient(circle at 50% 45%,#a65d2d,#4c342b 55%,#1b1b2a)}
+    .cover-dino{background:radial-gradient(circle at 50% 45%,#2d8a4b,#144a3a 58%,#102a2b)}
+    .game-emoji{font-size:82px;z-index:1;filter:drop-shadow(0 12px 18px #0008);transition:transform .25s}
+    .card:hover .game-emoji{transform:scale(1.12) rotate(-5deg)}
+    .cover:before{display:none}.shot-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s}.card:hover .shot-img{transform:scale(1.06)}
+    .cover-label{position:absolute;z-index:2;left:14px;top:13px;background:#090b16aa;border:1px solid #ffffff24;padding:6px 9px;border-radius:20px;font-size:9px;letter-spacing:1px;font-weight:900}
+    .favorite{position:absolute;z-index:3;right:13px;top:12px;width:34px;height:34px;border-radius:50%;border:1px solid #ffffff30;background:#090b16aa;color:white;cursor:pointer;font-size:17px}
+    .favorite.on{color:#ff70a8;border-color:#ff70a8;background:#421b36}
+    .card-body{padding:17px}
+    .card-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .card h3{font-size:18px;margin:0;letter-spacing:-.4px}
+    .genre{color:var(--muted);font-size:10px;white-space:nowrap}
+    .card p{color:var(--muted);font-size:12px;line-height:1.6;min-height:39px;margin:11px 0 15px}
+    .card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .play{border:0;background:linear-gradient(100deg,var(--cyan),#8da4ff);color:#09111c;font-weight:900;border-radius:10px;padding:10px 15px;cursor:pointer;transition:.2s}
+    .play:hover{filter:brightness(1.12);transform:translateY(-1px)}
+    .free{font-size:10px;color:var(--lime);font-weight:850;letter-spacing:1px}
+    .empty{display:none;text-align:center;padding:45px 15px;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
+    .feature-strip{margin:55px 0 70px;padding:27px;border-radius:20px;border:1px solid #8b5cf633;background:linear-gradient(110deg,#201b42,#12172c 65%,#102d39);display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .feature-strip h3{margin:0 0 6px;font-size:20px}.feature-strip p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+    footer{border-top:1px solid var(--line);padding:25px 0 35px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#e8fbff;color:#07121a;padding:11px 17px;border-radius:12px;font-size:12px;font-weight:800;box-shadow:0 10px 35px #0008;transition:.25s;z-index:20}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:48px}.hero-art{min-height:270px}.grid{grid-template-columns:repeat(2,1fr)}nav{gap:15px}}
+    @media(max-width:600px){.wrap{width:min(100% - 28px,500px)}header{height:68px}.status,nav{display:none}.menu-btn{display:block}.hero{padding:38px 0 30px;gap:25px}h1{letter-spacing:-2.4px}.hero-art{min-height:230px}.hero-console{transform:translate(-50%,-50%) scale(.82) rotate(-7deg)}.tag-one{top:24px;left:12px}.tag-two{right:12px;bottom:23px}.tag-three{right:12px;top:24px}.hero-note{left:13px;bottom:10px;font-size:8px}.stats{gap:8px;margin-bottom:42px}.stat{padding:12px 10px}.stat strong{font-size:18px}.stat span{font-size:9px}.section-head{align-items:start;flex-direction:column}.grid{grid-template-columns:1fr}.cover{height:190px}.feature-strip{margin:42px 0 50px;align-items:flex-start;flex-direction:column;padding:22px}.feature-strip .btn{width:100%;justify-content:center}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+    /* --- portada: carrusel de gameplay --- */
+    .hero-art{--c:#a78bfa;min-height:0;aspect-ratio:16/10;background:#0b0e1e;border-color:color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 25px 80px #0007,0 0 70px color-mix(in srgb,var(--c) 30%,transparent);transition:border-color .6s,box-shadow .6s}
+    .hero-art:before,.hero-art:after{display:none}
+    .slide{position:absolute;inset:0;display:block;opacity:0;transition:opacity .7s}
+    .slide.on{opacity:1;z-index:1}
+    .slide video{width:100%;height:100%;object-fit:cover;display:block}
+    .slide:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#080a16ee 0%,transparent 48%)}
+    .slide-cap{position:absolute;left:20px;bottom:18px;z-index:2;display:grid;gap:2px}
+    .slide-cap b{font-size:22px;letter-spacing:-.5px}.slide-cap small{color:#c4cae0;font-size:12px}
+    .slide-go{position:absolute;right:18px;bottom:18px;z-index:2;padding:11px 15px;border-radius:12px;font-size:12px;font-weight:900;color:#080b18;background:var(--c);box-shadow:0 8px 24px color-mix(in srgb,var(--c) 40%,transparent)}
+    .dots{position:absolute;left:20px;bottom:70px;z-index:3;display:flex;gap:7px}
+    .dots button{position:relative;width:24px;height:6px;border:0;border-radius:8px;background:#ffffff4d;cursor:pointer;padding:0}
+    .dots button:after{content:"";position:absolute;inset:-12px -3px}
+    .dots button.on{background:var(--c)}
+    /* --- tarjetas con el color de cada juego --- */
+    .card:hover{border-color:color-mix(in srgb,var(--c) 70%,transparent);box-shadow:0 20px 45px #0005,0 0 42px color-mix(in srgb,var(--c) 26%,transparent)}
+    .card .cover-label{color:var(--c);border-color:color-mix(in srgb,var(--c) 50%,transparent)}
+    .card .play{background:linear-gradient(110deg,var(--c),var(--c2));color:#080b18}
+    @media(max-width:600px){.dots{left:14px;bottom:58px}.slide-cap{left:14px;bottom:14px}.slide-cap b{font-size:17px}.slide-go{right:12px;bottom:12px;padding:9px 11px;font-size:11px}}
+
+    /* --- extras creativos --- */
+    body{overflow-x:clip}
+    main#inicio{position:relative}
+    .synth{position:absolute;left:50%;top:330px;width:100vw;height:400px;transform:translateX(-50%);overflow:hidden;pointer-events:none;z-index:-1;opacity:.55;-webkit-mask-image:linear-gradient(180deg,transparent,#000 50%,transparent);mask-image:linear-gradient(180deg,transparent,#000 50%,transparent)}
+    .synth:before{content:"";position:absolute;left:-50%;right:-50%;top:0;bottom:-40%;background:linear-gradient(90deg,#8b5cf677 1px,transparent 1px) 0 0/68px 68px,linear-gradient(0deg,#43e8f555 1px,transparent 1px) 0 0/68px 68px;transform:perspective(420px) rotateX(64deg);transform-origin:50% 0;animation:gridmove 3.4s linear infinite}
+    @keyframes gridmove{to{background-position:0 68px,0 68px}}
+    .card{position:relative}
+    .shine{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:3;opacity:0;transition:opacity .25s;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),#ffffff22,transparent 46%)}
+    .card:hover .shine{opacity:1}
+    .resume{--c:#43e8f5;display:flex;align-items:center;gap:14px;margin:0 0 18px;padding:10px 16px 10px 10px;border-radius:16px;border:1px solid color-mix(in srgb,var(--c) 45%,transparent);background:linear-gradient(100deg,color-mix(in srgb,var(--c) 14%,#0f1326),#0f1326);transition:transform .2s}
+    .resume[hidden]{display:none}.resume:hover{transform:translateY(-2px)}
+    .resume img{width:84px;aspect-ratio:16/10;object-fit:cover;border-radius:10px}
+    .resume span{display:grid;line-height:1.3;flex:1;min-width:0}
+    .resume small{font-size:10px;letter-spacing:1.6px;font-weight:900;color:var(--c)}
+    .resume b{font-size:16px}.resume em{font-style:normal;font-size:12px;color:var(--muted)}
+    .resume i{font-style:normal;font-size:12px;font-weight:900;color:#080b18;background:var(--c);padding:10px 14px;border-radius:11px;white-space:nowrap}
+    .flinks a{color:var(--muted)}.flinks a:hover{color:#fff}
+    @media(max-width:600px){.resume img{width:64px}.resume i{padding:9px 11px}.synth{top:420px}}
+    @media(prefers-reduced-motion:reduce){.synth:before{animation:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#"><span class="brand-mark">▶</span><span>PRO<span>GAME</span></span></a>
+      <nav><a href="#inicio">Inicio</a><a href="#juegos">Juegos</a><a href="#sobre">Sobre PROGAME</a></nav>
+      <div class="header-right"><span class="status"><i class="dot" style="display:inline-block;margin-right:6px"></i> 3 JUEGOS DISPONIBLES</span><button class="menu-btn" id="menuBtn" aria-label="Ir a juegos">☰</button></div>
+    </header>
+
+    <main id="inicio">
+      <div class="synth" aria-hidden="true"></div>
+      <section class="hero">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> ARCADE HTML5 · JUEGA GRATIS</div>
+          <h1>EL JUEGO<br>EMPIEZA <em>AQUÍ.</em></h1>
+          <p class="hero-copy">Entra, elige tu desafío y demuestra de qué estás hecho. Juegos arcade para disfrutar directamente desde tu navegador, sin descargas.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#juegos">EXPLORAR JUEGOS <span>↗</span></a><a class="btn btn-ghost" href="#sobre">CONÓCENOS</a></div>
+        </div>
+        <div class="hero-art" id="showcase" aria-label="Avance de los juegos" style="--c:#a78bfa">
+          <a class="slide on" href="juego/sobrevive-60/index.html" data-c="#a78bfa" aria-label="Jugar Sobrevive 60 segundos">
+            <video muted loop playsinline preload="metadata" poster="assets/img/sobrevive-60-cover.jpg"><source src="assets/video/sobrevive-60.webm" type="video/webm"><source src="assets/video/sobrevive-60.mp4" type="video/mp4"></video>
+            <span class="slide-cap"><b>Sobrevive 60 segundos</b><small>Acción · Supervivencia</small></span><span class="slide-go">JUGAR AHORA ↗</span>
+          </a>
+          <a class="slide" href="juego/dino-blades/index.html" data-c="#6ee07a" aria-label="Jugar Dino Blades">
+            <video muted loop playsinline preload="metadata" poster="assets/img/dino-blades-cover.jpg"><source src="assets/video/dino-blades.webm" type="video/webm"><source src="assets/video/dino-blades.mp4" type="video/mp4"></video>
+            <span class="slide-cap"><b>Dino Blades</b><small>Supervivencia · Arena</small></span><span class="slide-go">JUGAR AHORA ↗</span>
+          </a>
+          <a class="slide" href="juego/underground-worm/index.html" data-c="#ff9b4a" aria-label="Jugar Underground Worm">
+            <video muted loop playsinline preload="metadata" poster="assets/img/underground-worm-cover.jpg"><source src="assets/video/underground-worm.webm" type="video/webm"><source src="assets/video/underground-worm.mp4" type="video/mp4"></video>
+            <span class="slide-cap"><b>Underground Worm</b><small>Acción · Estrategia</small></span><span class="slide-go">JUGAR AHORA ↗</span>
+          </a>
+          <div class="dots"><button type="button" class="on" aria-label="Ver Sobrevive 60 segundos"></button><button type="button" class="" aria-label="Ver Dino Blades"></button><button type="button" class="" aria-label="Ver Underground Worm"></button></div>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Estadísticas">
+        <div class="stat"><strong>3 juegos</strong><span>Nuevos desafíos pronto</span></div>
+        <div class="stat"><strong>Gratis</strong><span>Sin registro ni descargas</span></div>
+        <div class="stat"><strong>PC y celular</strong><span>Juega desde el navegador</span></div>
+      </section>
+
+      <section id="juegos">
+        <div class="section-head">
+          <div><div class="section-kicker">SELECCIONA TU PARTIDA</div><h2>Explora nuestros juegos</h2><p class="section-sub">Tu próxima partida está a un clic de distancia.</p></div>
+        </div>
+        <a class="resume" id="resume" hidden></a>
+        <div class="tools">
+          <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Buscar un juego..." autocomplete="off"></label>
+          <div class="filters" role="group" aria-label="Filtrar juegos"><button class="filter active" data-filter="all">Todos</button><button class="filter" data-filter="accion">Acción</button><button class="filter" data-filter="supervivencia">Supervivencia</button><button class="filter" data-filter="favoritos">♥ Favoritos</button></div>
+        </div>
+        <div class="grid" id="gameGrid">
+          <article class="card" style="--c:#a78bfa;--c2:#7d9cff" data-name="sobrevive 60 segundos" data-tags="accion supervivencia">
+            <div class="cover cover-survive"><span class="cover-label">MODO SUPERVIVENCIA</span><button class="favorite" aria-label="Añadir a favoritos" title="Añadir a favoritos">♡</button><img class="shot-img" src="assets/img/sobrevive-60-cover.jpg" alt="Captura de Sobrevive 60 segundos" loading="lazy"></div>
+            <div class="card-body"><div class="card-top"><h3>Sobrevive 60 segundos</h3><span class="genre">ACCIÓN</span></div><p>Resiste la presión, esquiva los peligros y aguanta hasta que el cronómetro llegue a cero.</p><div class="card-bottom"><span class="free">● GRATIS</span><a class="play" href="juego/sobrevive-60/index.html">JUGAR AHORA ↗</a></div></div>
+          </article>
+          <article class="card" style="--c:#ff9b4a;--c2:#ff6a5c" data-name="underground worm" data-tags="accion">
+            <div class="cover cover-worm"><span class="cover-label">SOLO / MULTIJUGADOR</span><button class="favorite" aria-label="Añadir a favoritos" title="Añadir a favoritos">♡</button><img class="shot-img" src="assets/img/underground-worm-cover.jpg" alt="Captura de Underground Worm" loading="lazy"></div>
+            <div class="card-body"><div class="card-top"><h3>Underground Worm</h3><span class="genre">ACCIÓN</span></div><p>Excava, ataca y enfréntate a la CPU o reta a tus amigos en partidas multijugador.</p><div class="card-bottom"><span class="free">● GRATIS</span><a class="play" href="juego/underground-worm/index.html">JUGAR AHORA ↗</a></div></div>
+          </article>
+          <article class="card" style="--c:#6ee07a;--c2:#b8f36b" data-name="dino blades" data-tags="accion supervivencia">
+            <div class="cover cover-dino"><span class="cover-label">BATALLA EN LA ARENA</span><button class="favorite" aria-label="Añadir a favoritos" title="Añadir a favoritos">♡</button><img class="shot-img" src="assets/img/dino-blades-cover.jpg" alt="Captura de Dino Blades" loading="lazy"></div>
+            <div class="card-body"><div class="card-top"><h3>Dino Blades</h3><span class="genre">SUPERVIVENCIA</span></div><p>Reúne espadas, mejora tu poder y derrota a tus rivales para convertirte en el más fuerte.</p><div class="card-bottom"><span class="free">● GRATIS</span><a class="play" href="juego/dino-blades/index.html">JUGAR AHORA ↗</a></div></div>
+          </article>
+        </div>
+        <div class="empty" id="empty">No encontramos juegos con esa búsqueda. Prueba con otro nombre.</div>
+      </section>
+
+      <section class="feature-strip" id="sobre">
+        <div><h3>Tu próxima partida te está esperando.</h3><p>Elige un juego, entra a la acción y vuelve cuando quieras.<br>Estamos empezando: pronto habrá nuevos desafíos.</p></div>
+        <a class="btn btn-primary" href="#juegos">VAMOS A JUGAR ↗</a>
+      </section>
+    </main>
+    <footer><span>© <span id="year"></span> PROGAME ARCADE. Hecho para jugar.</span><span class="flinks"><a href="sobre-nosotros.html">Sobre nosotros</a> · <a href="privacidad.html">Privacidad</a> · <a href="contacto.html">Contacto</a></span></footer>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+    const cards=[...document.querySelectorAll('.card')], filters=[...document.querySelectorAll('.filter')], search=document.getElementById('search'), empty=document.getElementById('empty');
+    let current='all', favorites=JSON.parse(localStorage.getItem('progame-favs')||'[]');
+    function render(){
+      const q=search.value.trim().toLowerCase();let shown=0;
+      cards.forEach(card=>{
+        const name=card.dataset.name, tags=card.dataset.tags.split(' ');
+        const okText=name.includes(q),okTag=current==='all'||(current==='favoritos'?favorites.includes(name):tags.includes(current));
+        card.style.display=okText&&okTag?'':'none';if(okText&&okTag)shown++;
+        const fav=card.querySelector('.favorite');fav.classList.toggle('on',favorites.includes(name));fav.textContent=favorites.includes(name)?'♥':'♡';
+      });
+      empty.style.display=shown?'none':'block';
+    }
+    filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(b=>b.classList.remove('active'));btn.classList.add('active');current=btn.dataset.filter;render()}));
+    search.addEventListener('input',render);
+    document.querySelectorAll('.favorite').forEach(btn=>btn.addEventListener('click',()=>{
+      const name=btn.closest('.card').dataset.name;
+      favorites=favorites.includes(name)?favorites.filter(x=>x!==name):[...favorites,name];
+      localStorage.setItem('progame-favs',JSON.stringify(favorites));render();toast(favorites.includes(name)?'Añadido a favoritos ♥':'Eliminado de favoritos');
+    }));
+    function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.remove('show'),1900)}
+    document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('juegos').scrollIntoView({behavior:'smooth'}));
+    document.getElementById('year').textContent=new Date().getFullYear();
+    render();
+  </script>
+<script>
+(()=>{const box=document.getElementById('showcase');if(!box)return;
+const sl=[...box.querySelectorAll('.slide')],dots=[...box.querySelectorAll('.dots button')];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let i=0,t;
+function show(n){i=(n+sl.length)%sl.length;sl.forEach((s,k)=>{const on=k===i,v=s.querySelector('video');s.classList.toggle('on',on);if(on){if(!reduce){v.currentTime=0;v.play().catch(()=>{})}}else v.pause()});dots.forEach((d,k)=>d.classList.toggle('on',k===i));box.style.setProperty('--c',sl[i].dataset.c)}
+function auto(){clearInterval(t);if(!reduce)t=setInterval(()=>show(i+1),6500)}
+dots.forEach((d,k)=>d.onclick=()=>{show(k);auto()});
+box.addEventListener('mouseenter',()=>clearInterval(t));box.addEventListener('mouseleave',auto);
+document.addEventListener('visibilitychange',()=>document.hidden?clearInterval(t):auto());
+show(0);auto();})();
+</script>
+<script>
+(()=>{const N={'sobrevive-60':'Sobrevive 60 segundos','dino-blades':'Dino Blades','underground-worm':'Underground Worm'},C={'sobrevive-60':'#a78bfa','dino-blades':'#6ee07a','underground-worm':'#ff9b4a'};
+try{const L0=localStorage.getItem('progame-last'),L=L0?{slug:L0}:null,P=JSON.parse(localStorage.getItem('progame-plays')||'{}'),el=document.getElementById('resume');
+if(L&&N[L.slug]&&el){const n=P[L.slug]||1;el.href='juego/'+L.slug+'/index.html';el.style.setProperty('--c',C[L.slug]);
+el.innerHTML='<img src="assets/img/'+L.slug+'-cover.jpg" alt=""><span><small>SEGUIR JUGANDO</small><b>'+N[L.slug]+'</b><em>Lo has abierto '+n+(n==1?' vez':' veces')+'</em></span><i>▶ CONTINUAR</i>';el.hidden=false}}catch(e){}
+if(matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches)document.querySelectorAll('.card').forEach(c=>{const sh=document.createElement('i');sh.className='shine';c.appendChild(sh);
+c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.transition='transform .1s ease-out,border-color .22s,box-shadow .22s';c.style.transform='perspective(900px) rotateX('+((.5-y)*7)+'deg) rotateY('+((x-.5)*9)+'deg) translateY(-6px)';c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%')});
+c.addEventListener('pointerleave',()=>{c.style.transition='';c.style.transform=''})});})();
+</script>
+</body>
+</html>
