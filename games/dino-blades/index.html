@@ -99,7 +99,7 @@ html,body{overscroll-behavior:none;-webkit-user-select:none;-webkit-touch-callou
 
 <div id="help">WASD / Flechas para moverte | Al acercarte a un rival las espadas chocan y se destruyen | Gana quien conserve más | M: sonido</div>
 
-<div id="gameOver"><div class="box"><h1 style="color:#ff4a4a">ELIMINADO</h1><p id="deathMsg" style="color:#ff9a9a;margin:0 0 6px"></p><p id="finalScore" style="font-size:16px"></p><div class="rank" id="rankOver"></div><p id="waitMsg" style="color:#ffe066;font-weight:bold;margin:8px 0"></p><button id="retryBtn" onclick="retry()">REINTENTAR</button></div></div>
+<div id="gameOver"><div class="box"><h1 style="color:#ff4a4a">ELIMINADO</h1><p id="deathMsg" style="color:#ff9a9a;margin:0 0 6px"></p><p id="finalScore" style="font-size:16px"></p><div class="rank" id="rankOver"></div><button id="retryBtn" onclick="retry()">REINTENTAR</button></div></div>
 <div id="victory"><div class="box" id="victoryBox"><h1 style="color:#31d8ff">VICTORIA</h1><p style="font-size:18px">¡Sobreviviste y exterminaste a todos los rivales!</p><p id="victoryScore" style="color:#a2f3ff"></p><div class="rank" id="rankWin"></div><button onclick="location.reload()">JUGAR OTRA VEZ</button></div></div>
 
 <div id="start">
@@ -1324,7 +1324,7 @@ $("btnFull").onclick = toggleFullscreen; if (!FS) $("btnFull").style.display = "
 
 /* ---------- Modo en línea (multijugador) ---------- */
 const ONLINE_URL = "";   // ← dirección de tu servidor, ej. "wss://dino-blades.onrender.com". Si abres el juego desde el propio servidor, déjala vacía.
-let roundLeft = 999, ONLINE = false, ws = null, myId = 0, snaps = [], netMM = [], netClock = 0, netClockAt = 0, aliveCount = 0, onlineCount = 1, lastIn = [0, 0, 0], tryUntil = 0, netErr = "";
+let ONLINE = false, ws = null, myId = 0, snaps = [], netMM = [], netClock = 0, netClockAt = 0, aliveCount = 0, onlineCount = 1, lastIn = [0, 0, 0], tryUntil = 0, netErr = "";
 const onlineEnts = new Map(), PU_TYPES = ["speed", "shield", "magnet"];
 const wsUrl = () => ONLINE_URL || (location.protocol === "https:" ? "wss://" : "ws://") + location.host;
 const sendWS = o => { if (ws && ws.readyState === 1) ws.send(JSON.stringify(o)); };
@@ -1340,12 +1340,6 @@ function hudUpdate(alive) {
   if (player.shieldTimer > 0) pw.push('<span style="color:#00f0ff">Escudo ' + player.shieldTimer.toFixed(1) + 's</span>');
   if (player.magnetTimer > 0) pw.push('<span style="color:#cc00ff">Imán ' + player.magnetTimer.toFixed(1) + 's</span>');
   document.getElementById("activePowerups").innerHTML = pw.join("");
-}
-function deadUI() {   // en los últimos 15 s no se puede reaparecer: solo "ELIMINADO" y la cuenta atrás
-  if (!ONLINE || player.alive) return;
-  const lock = roundLeft <= 15;
-  $("retryBtn").style.display = lock ? "none" : "";
-  $("waitMsg").textContent = lock ? (roundLeft > 0 ? "⏳ La partida termina en " + roundLeft + " s" : "⏳ Iniciando nueva partida…") : "";
 }
 function retry() { if (ONLINE && ws && ws.readyState === 1) sendWS({ t: "respawn" }); else location.reload(); }
 
@@ -1365,7 +1359,7 @@ function failOnline(msg) { ws = null; $("onlineBtn").disabled = false; nickErr.s
 function lostConnection() {
   ONLINE = false; finished = true; player.alive = false;
   $("deathMsg").textContent = "Se perdió la conexión con el servidor"; $("finalScore").textContent = ""; $("rankOver").innerHTML = "";
-  $("retryBtn").textContent = "RECARGAR"; $("retryBtn").style.display = ""; $("waitMsg").textContent = ""; $("gameOver").style.display = "flex";
+  $("retryBtn").textContent = "RECARGAR"; $("gameOver").style.display = "flex";
 }
 function connect() {
   let sock; try { sock = new WebSocket(wsUrl()); } catch (e) { return failOnline(); }
@@ -1400,13 +1394,13 @@ function onNet(m) {
     m.roster.forEach(r => { if (r[0] !== myId) netEntity(r); });
     netClock = m.n; netClockAt = performance.now(); gameClock = m.n;
     Object.assign(player, { alive: true, blades: 5, tier: 0, shieldTimer: 0 });
-    nickErr.textContent = ""; $("gameOver").style.display = "none"; $("retryBtn").textContent = "REAPARECER"; $("retryBtn").style.display = ""; $("waitMsg").textContent = ""; roundLeft = 999;
+    nickErr.textContent = ""; $("gameOver").style.display = "none"; $("retryBtn").textContent = "REAPARECER";
     if (!started) enterGame(); else if (again) banner("🔄 ¡Nueva partida!", "#7dff7d");
   } else if (m.t === "s") {
     const now = performance.now(), map = new Map();
     m.e.forEach(a => map.set(a[0], a));
     snaps.push({ t: now, e: map }); if (snaps.length > 8) snaps.shift();
-    netClock = m.n; netClockAt = now; aliveCount = m.a; onlineCount = m.o; roundLeft = m.r; deadUI();
+    netClock = m.n; netClockAt = now; aliveCount = m.a; onlineCount = m.o;
     if (m.k) { knives.length = 0; m.k.forEach(k => knives.push({ x: k[0], y: k[1], rot: (k[0] * 7 + k[1] * 13) % 6.28 })); }
     if (m.p) { powerups.length = 0; m.p.forEach(p => powerups.push({ x: p[0], y: p[1], type: PU_TYPES[p[2]], pulse: p[0] % 6 })); }
     if (m.mm) netMM = m.mm.map(a => ({ x: a[0], y: a[1], blades: a[2], boss: !!a[3], alive: true }));
@@ -1427,8 +1421,8 @@ function onNet(m) {
     const idx = saveScore({ name: playerName, score: m.score, kills: m.kills, peak: m.peak, time: m.time });
     $("deathMsg").textContent = m.msg;
     $("finalScore").textContent = playerName + " · " + m.score + " pts · " + m.kills + " eliminaciones · máx. " + m.peak + " espadas · " + m.time + "s";
-    renderRanking($("rankOver"), idx, 5); $("gameOver").style.display = "flex"; deadUI();
-  } else if (m.t === "spawn") { player.alive = true; $("gameOver").style.display = "none"; $("waitMsg").textContent = ""; }
+    renderRanking($("rankOver"), idx, 5); $("gameOver").style.display = "flex";
+  } else if (m.t === "spawn") { player.alive = true; $("gameOver").style.display = "none"; }
   else if (m.t === "err") { netErr = m.msg; tryUntil = 0; if (ws) ws.close(); }
 }
 function netUpdate(dt) {

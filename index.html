@@ -155,9 +155,48 @@
     /* polish-movil */
     .card[data-name="underground worm"] .cover-label{top:auto;bottom:12px}
     @media(max-width:600px){.stat{padding:14px 12px}.stat strong{font-size:15px;line-height:1.2}.stat span{font-size:9px;letter-spacing:.7px;line-height:1.4}}
+
+    /* --- ronda 8: reto del día, racha, récords, efectos --- */
+    .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.pills .mission{margin-top:0}
+    .streak,.sfx{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:30px;background:#ffffff08;border:1px solid var(--line);font:inherit;font-size:12px;color:var(--muted)}
+    .streak b{color:#ffb454}.sfx{cursor:pointer}.sfx:hover{color:#fff;border-color:#43e8f566}.sfx.on{color:var(--cyan);border-color:#43e8f577}
+    .daily{--c:#43e8f5;display:flex;align-items:center;gap:16px;margin:0 0 14px;padding:12px 16px 12px 12px;border-radius:18px;border:1px solid color-mix(in srgb,var(--c) 40%,transparent);background:linear-gradient(100deg,color-mix(in srgb,var(--c) 12%,#0f1326),#0f1326 70%)}
+    .daily img{width:120px;aspect-ratio:16/10;object-fit:cover;border-radius:12px}
+    .d-txt{display:grid;gap:3px;flex:1;min-width:0;line-height:1.35}
+    .d-txt small{font-size:10px;letter-spacing:1.6px;font-weight:900;color:var(--c)}
+    .d-txt b{font-size:17px}.d-txt em{font-style:normal;font-size:12px;color:var(--muted)}
+    .d-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .d-btns a,.d-btns button{font:inherit;font-size:12px;font-weight:900;border-radius:11px;padding:11px 14px;cursor:pointer;white-space:nowrap}
+    .d-go{color:#080b18;background:var(--c);border:0}
+    .d-btns button{color:#fff;background:#ffffff0d;border:1px solid var(--line)}.d-btns button:hover{border-color:var(--c)}
+    .d-btns button[disabled]{opacity:.55;cursor:default}
+    .rec{position:absolute;left:12px;bottom:12px;z-index:3;font-size:11px;font-weight:800;padding:5px 10px;border-radius:20px;background:#090b16dd;border:1px solid color-mix(in srgb,var(--c) 55%,transparent);color:var(--c)}
+    @media(max-width:700px){.daily{flex-wrap:wrap}.daily img{width:96px}.d-btns{width:100%;justify-content:stretch}.d-btns a,.d-btns button{flex:1;text-align:center}}
+
+    /* --- ronda 9: votación, revelado, accesibilidad --- */
+    .vote{margin:64px 0 10px}.vote-head h2{margin:6px 0 4px;font-size:clamp(24px,3.4vw,32px);letter-spacing:-.8px}
+    .vote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .vopt{--c:#43e8f5;display:flex;align-items:center;gap:12px;text-align:left;padding:14px 16px;border-radius:16px;background:#0f1326;border:1px solid var(--line);color:#fff;font:inherit;cursor:pointer;transition:transform .15s,border-color .2s,box-shadow .2s}
+    .vopt:hover:not([disabled]){transform:translateY(-3px);border-color:color-mix(in srgb,var(--c) 70%,transparent);box-shadow:0 10px 28px color-mix(in srgb,var(--c) 18%,transparent)}
+    .vopt i{font-style:normal;font-size:26px}.vopt b{display:block;font-size:15px}.vopt small{color:var(--muted);font-size:12px}
+    .vopt.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,#0f1326)}.vopt[disabled]{cursor:default;opacity:.5}.vopt.on[disabled]{opacity:1}
+    .vote-note{margin:14px 0 0;color:var(--lime);font-weight:800;font-size:14px}.vote-note[hidden]{display:none}
+    @media(max-width:860px){.vote-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.vote-grid{grid-template-columns:1fr}}
+    .skip{position:absolute;left:-999px;top:8px}.skip:focus{left:12px;z-index:300;background:#fff;color:#000;padding:8px 12px;border-radius:8px;font-weight:800}
+    .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}.rv.in{opacity:1;transform:none}
+    h1 em{background-size:200% 100%;animation:sweep 6s ease-in-out infinite alternate}@keyframes sweep{to{background-position:100% 0}}
+    @media(prefers-reduced-motion:reduce){h1 em{animation:none}}
+
+    /* --- ronda 10 --- */
+    ::selection{background:#43e8f5;color:#080b18}html{scrollbar-color:#3a3f66 #090b16}
+    a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid #43e8f5;outline-offset:3px}
+    #sharesite{background:none;border:0;color:var(--muted);font:inherit;cursor:pointer;padding:0}#sharesite:hover{color:#fff}
+    .iostip{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:150;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:#151a33;border:1px solid #43e8f566;box-shadow:0 18px 50px #000a;font-size:13px;line-height:1.45}
+    .iostip b{color:#43e8f5}.iostip button{flex:none;background:#ffffff14;border:0;color:#fff;border-radius:10px;width:34px;height:34px;font-size:16px;cursor:pointer}
   </style>
-</head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"PROGAME Arcade","url":"https://progame-arcade.netlify.app/","inLanguage":"es","description":"Juegos arcade gratis en tu navegador, sin descargas ni registro."}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"PROGAME Arcade","url":"https://progame-arcade.netlify.app/","logo":"https://progame-arcade.netlify.app/assets/img/icon-512.png"}</script></head>
 <body>
+<a class="skip" href="#juegos">Saltar a los juegos</a>
   <div class="wrap">
     <header>
       <a class="brand" href="#"><span class="brand-mark">▶</span><span>PRO<span>GAME</span></span></a>
@@ -201,6 +240,7 @@
         <div class="section-head">
           <div><div class="section-kicker">SELECCIONA TU PARTIDA</div><h2>Explora nuestros juegos</h2><p class="section-sub">Tu próxima partida está a un clic de distancia.</p><div class="mission" id="mission" title="Abre los tres juegos para completar la misión"><span class="m-dots"><i></i><i></i><i></i></span><span class="m-txt">Misión: prueba los 3 juegos · <b>0/3</b></span></div></div>
         </div>
+        <div class="daily" id="daily"></div>
         <a class="resume" id="resume" hidden></a>
         <div class="tools">
           <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Buscar un juego..." autocomplete="off"></label>
@@ -223,6 +263,13 @@
         <div class="empty" id="empty">No encontramos juegos con esa búsqueda. Prueba con otro nombre.</div>
       </section>
 
+      <section class="vote" id="votar" aria-labelledby="vt">
+        <div class="vote-head"><div class="section-kicker">TÚ DECIDES</div><h2 id="vt">¿Qué juego quieres que haga después?</h2><p class="section-sub">Vota por tu favorito. Los más pedidos serán los siguientes.</p></div>
+        <div class="vote-grid" id="vote-grid"></div>
+        <p class="vote-note" id="vote-note" hidden></p>
+        <form name="votos" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden><input type="hidden" name="form-name" value="votos"><input name="juego"><input name="bot-field"></form>
+      </section>
+
       <section class="feature-strip" id="sobre">
         <div><h3>¿Quieres saber cuándo hay un juego nuevo?</h3><p>Déjanos tu correo y te avisamos. Sin spam, solo juegos.</p></div>
         <form class="sub" name="novedades" method="POST" action="index.html?suscrito=1#sobre" data-netlify="true" netlify-honeypot="bot-field">
@@ -232,7 +279,7 @@
         <p class="sub-ok" hidden>¡Listo! Te avisaremos cuando haya novedades. 🎮</p>
       </section>
     </main>
-    <footer><span>© <span id="year"></span> PROGAME ARCADE. Hecho para jugar.</span><span class="flinks"><a href="sobre-nosotros.html">Sobre nosotros</a> · <a href="privacidad.html">Privacidad</a> · <a href="contacto.html">Contacto</a></span></footer>
+    <footer><span>© <span id="year"></span> PROGAME ARCADE. Hecho para jugar.</span><span class="flinks"><button type="button" id="sharesite">📣 Compartir PROGAME</button> · <a href="sobre-nosotros.html">Sobre nosotros</a> · <a href="privacidad.html">Privacidad</a> · <a href="contacto.html">Contacto</a></span></footer>
   </div>
   <div class="toast" id="toast" role="status"></div>
   <script>
@@ -293,6 +340,69 @@ addEventListener('keydown',e=>{i=(e.key===K[i]||e.key.toLowerCase()===K[i])?i+1:
 <script>
 if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('sw.js').catch(()=>{});
 let ip;addEventListener('beforeinstallprompt',e=>{e.preventDefault();ip=e;const i=document.getElementById('install');i.hidden=false;i.onclick=async()=>{i.hidden=true;ip.prompt();await ip.userChoice;ip=null}});
+</script>
+<script>
+(()=>{const T=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},W=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const G={'sobrevive-60':['Sobrevive 60 segundos','#a78bfa'],'underground-worm':['Underground Worm','#ff9b4a'],'dino-blades':['Dino Blades','#6ee07a']};
+const pad=n=>String(n).padStart(2,'0'),D=new Date(),today=D.getFullYear()+'-'+pad(D.getMonth()+1)+'-'+pad(D.getDate());
+const toast2=m=>{if(window.toast)window.toast(m)};
+/* sonido (apagado por defecto) */
+let AC=null,sfx=T('progame-sfx',false)===true;
+function beep(f,d,t,v,at){if(!sfx)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),s=AC.currentTime+(at||0);o.type=t||'square';o.frequency.value=f;g.gain.setValueAtTime(v||.04,s);g.gain.exponentialRampToValueAtTime(.0001,s+(d||.07));o.connect(g);g.connect(AC.destination);o.start(s);o.stop(s+(d||.07))}catch(e){}}
+const fan=()=>[523,659,784,1047].forEach((f,i)=>beep(f,.16,'square',.05,i*.11));
+/* confeti */
+function confetti(n){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;const c=document.createElement('canvas');c.style.cssText='position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:200';document.body.appendChild(c);const x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;const col=['#43e8f5','#a78bfa','#ff4fa3','#b8f36b','#ff9b4a'];
+const P=Array.from({length:n||120},()=>({x:innerWidth/2+(Math.random()-.5)*220,y:innerHeight*.38,vx:(Math.random()-.5)*13,vy:-Math.random()*11-3,s:5+Math.random()*6,c:col[Math.random()*5|0],r:Math.random()*6,vr:(Math.random()-.5)*.4}));let f=0;
+(function t(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.vy+=.28;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/3,p.s,p.s*.6);x.restore()});if(++f<130)requestAnimationFrame(t);else c.remove()})()}
+/* racha de días */
+let st=T('progame-streak',{last:'',n:0});
+if(st.last!==today){const y=new Date(D.getTime()-864e5),ys=y.getFullYear()+'-'+pad(y.getMonth()+1)+'-'+pad(y.getDate());st={last:today,n:st.last===ys?st.n+1:1};W('progame-streak',st)}
+const m=document.getElementById('mission');
+if(m){const w=document.createElement('div');w.className='pills';m.parentNode.insertBefore(w,m);w.appendChild(m);
+const sk=document.createElement('span');sk.className='streak';sk.innerHTML='🔥 Racha: <b>'+st.n+'</b> '+(st.n==1?'día':'días');w.appendChild(sk);
+const sb=document.createElement('button');sb.type='button';sb.className='sfx'+(sfx?' on':'');const lab=()=>sb.textContent=sfx?'🔊 Efectos: sí':'🔇 Efectos';lab();
+sb.onclick=()=>{sfx=!sfx;W('progame-sfx',sfx);sb.classList.toggle('on',sfx);lab();beep(880,.12,'square',.05)};w.appendChild(sb)}
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('pointerenter',()=>beep(660,.05)));
+document.querySelectorAll('.play').forEach(b=>b.addEventListener('click',()=>[523,659,784].forEach((f,i)=>beep(f,.1,'square',.05,i*.07))));
+/* confeti al completar la misión (una sola vez) */
+const P2=T('progame-plays',{});if(Object.keys(G).every(k=>P2[k]>0)&&!T('progame-confetti',false)){W('progame-confetti',true);setTimeout(()=>{confetti(170);fan();toast2('🏆 ¡Misión cumplida! Probaste los 3 juegos')},700)}
+/* récords personales en las tarjetas */
+function chip(name,txt,col){const cv=document.querySelector('.card[data-name="'+name+'"] .cover');if(!cv||!txt)return;const r=document.createElement('span');r.className='rec';r.style.setProperty('--c',col);r.textContent=txt;cv.appendChild(r)}
+try{const pr=T('sobrevive60-progress',null);if(pr&&pr.modes){const lv=Math.max(...Object.values(pr.modes).map(x=>(x&&x.unlocked)||1));if(lv>1)chip('sobrevive 60 segundos','★ Tu nivel: '+lv,'#a78bfa')}}catch(e){}
+try{const ds=T('dinoScores',[]);if(ds.length){const b=Math.max(...ds.map(x=>x.score||0));if(b>0)chip('dino blades','★ Tu récord: '+b,'#6ee07a')}}catch(e){}
+/* reto del día */
+const CH=[['sobrevive-60','Aguanta los 60 segundos en dificultad Difícil.'],['underground-worm','Gana una partida contra la CPU.'],['dino-blades','Consigue 20 espadas antes de que se cierre la zona.'],['sobrevive-60','Supera el nivel 3 en dificultad Intermedio.'],['underground-worm','Usa la cuerda ninja (Q) para cruzar el mapa.'],['dino-blades','Elimina a 3 rivales en una sola partida.'],['sobrevive-60','Completa un nivel en dificultad Extremo.'],['underground-worm','Derrota a un rival con la dinamita.'],['dino-blades','Sobrevive hasta que la zona roja se cierre.']];
+const box=document.getElementById('daily');
+if(box){const k=Math.floor((D.getTime()-D.getTimezoneOffset()*6e4)/864e5)%CH.length,[sl,tx]=CH[k],[nm,cl]=G[sl];box.style.setProperty('--c',cl);
+const render=()=>{const dn=T('progame-retos',[]),ok=dn.includes(today);
+box.innerHTML='<img src="assets/img/'+sl+'-cover.jpg" alt=""><div class="d-txt"><small>🎯 RETO DEL DÍA · '+nm.toUpperCase()+'</small><b>'+tx+'</b><em>'+(ok?'🏆 ¡Reto de hoy cumplido!':'Retos cumplidos: '+dn.length)+'</em></div><div class="d-btns"><a class="d-go" href="juego/'+sl+'/index.html">ACEPTAR RETO ↗</a><button type="button" id="d-ok"'+(ok?' disabled':'')+'>'+(ok?'✅ Cumplido':'✅ ¡Lo logré!')+'</button><button type="button" id="d-sh">Compartir</button></div>';
+document.getElementById('d-ok').onclick=()=>{const a=T('progame-retos',[]);if(!a.includes(today)){a.push(today);W('progame-retos',a)}confetti(90);fan();render();toast2('🏆 ¡Reto cumplido!')};
+document.getElementById('d-sh').onclick=async()=>{const t='🎯 Reto del día en PROGAME Arcade ('+nm+'): '+tx+' ¿Te animas?';try{if(navigator.share)await navigator.share({title:'PROGAME Arcade',text:t,url:location.origin+location.pathname});else{await navigator.clipboard.writeText(t+' '+location.origin+location.pathname);toast2('Reto copiado, pégalo donde quieras')}}catch(e){}}};
+render()}
+})();
+</script>
+<script>
+(()=>{const OP=[['🧱','Torre de bloques','Apila sin fallar','#43e8f5'],['🔤','Adivina la palabra','Una palabra al día','#b8f36b'],['🪐','Fusiona planetas','Une y crece','#a78bfa'],['🟡','Conecta 4 online','Reta a un amigo','#ffb454'],['🚀','Space Shooter','Naves y jefes','#ff4fa3'],['🐍','Snake neón','Con poderes','#6ee07a']];
+const g=document.getElementById('vote-grid'),note=document.getElementById('vote-note');let v=null;try{v=localStorage.getItem('progame-voto')}catch(e){}
+OP.forEach(o=>{const b=document.createElement('button');b.type='button';b.className='vopt';b.style.setProperty('--c',o[3]);b.innerHTML='<i>'+o[0]+'</i><span><b>'+o[1]+'</b><small>'+o[2]+'</small></span>';b.dataset.n=o[1];g.appendChild(b)});
+const lock=n=>{g.querySelectorAll('.vopt').forEach(b=>{b.disabled=true;b.classList.toggle('on',b.dataset.n===n)});note.hidden=false;note.textContent='¡Gracias! Votaste por '+n+'. 🎮'};
+if(v)lock(v);
+g.addEventListener('click',e=>{const b=e.target.closest('.vopt');if(!b||b.disabled)return;const n=b.dataset.n;try{localStorage.setItem('progame-voto',n)}catch(x){}lock(n);
+try{fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({'form-name':'votos',juego:n}).toString()}).catch(()=>{})}catch(x){}});
+/* revelado suave al desplazarse (solo lo que está fuera de pantalla) */
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&'IntersectionObserver' in window){const els=[...document.querySelectorAll('.card,.daily,.vote,.feature-strip')].filter(e=>e.getBoundingClientRect().top>innerHeight);
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(!x.isIntersecting)return;const e=x.target;io.unobserve(e);e.classList.add('in');setTimeout(()=>{e.classList.remove('rv','in');e.style.transitionDelay=''},900)}),{threshold:.12});
+els.forEach((e,i)=>{e.classList.add('rv');e.style.transitionDelay=(i%3)*90+'ms';io.observe(e)})}
+})();
+</script>
+<script>
+(()=>{const T=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
+const sh=document.getElementById('sharesite');if(sh)sh.onclick=async()=>{const u=location.origin+'/',t='Juegos arcade gratis en el navegador: PROGAME Arcade';try{if(navigator.share)await navigator.share({title:'PROGAME Arcade',text:t,url:u});else{await navigator.clipboard.writeText(t+' '+u);if(window.toast)window.toast('Enlace copiado, pégalo donde quieras')}}catch(e){}};
+/* aviso de instalación para iPhone/iPad (Safari no ofrece botón propio) */
+try{const ios=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),app=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches;
+if(!sessionStorage.getItem('pg-sess')){sessionStorage.setItem('pg-sess','1');localStorage.setItem('progame-visits',JSON.stringify(T('progame-visits',0)+1))}
+if(ios&&!app&&T('progame-visits',0)>=2&&!T('progame-iostip',false)){const d=document.createElement('div');d.className='iostip';d.innerHTML='<span>📲 <b>Instala PROGAME</b>: toca el botón Compartir de Safari y elige «Añadir a pantalla de inicio».</span><button type="button" aria-label="Cerrar">✕</button>';d.querySelector('button').onclick=()=>{localStorage.setItem('progame-iostip','true');d.remove()};document.body.appendChild(d)}}catch(e){}
+})();
 </script>
 </body>
 </html>

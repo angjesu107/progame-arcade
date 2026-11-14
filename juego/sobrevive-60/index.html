@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Sobrevive 60 segundos · Juega gratis en el navegador | PROGAME Arcade</title>
-<meta name="description" content="Esquiva a los enemigos y resiste 60 segundos en una arena de neón. Con el tiempo encontrarás un arma y desbloquearás habilidades como el Dash. Tiene cuatro dificultades y 99 niveles.">
+<meta name="description" content="Esquiva a los enemigos y resiste 60 segundos en una arena de neón. Con el tiempo encontrarás un arma y desbloquearás habilidades como el Dash. Tiene cuatro dificultades y 99 niveles."><meta name="theme-color" content="#090b16"><link rel="manifest" href="../../manifest.webmanifest"><link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta property="og:type" content="website"><meta property="og:site_name" content="PROGAME Arcade"><meta property="og:title" content="Sobrevive 60 segundos · PROGAME Arcade"><meta property="og:description" content="Esquiva a los enemigos y resiste 60 segundos en una arena de neón. Con el tiempo encontrarás un arma y desbloquearás habilidades como el Dash. Tiene cuatro dificultades y 99 niveles."><meta property="og:url" content="https://progame-arcade.netlify.app/juego/sobrevive-60/index.html"><meta property="og:image" content="https://progame-arcade.netlify.app/assets/img/sobrevive-60-cover.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://progame-arcade.netlify.app/assets/img/sobrevive-60-cover.jpg"><link rel="canonical" href="https://progame-arcade.netlify.app/juego/sobrevive-60/index.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎮%3C/text%3E%3C/svg%3E">
 <style>
 :root{--bg:#090b16;--panel:#111528;--panel2:#171c33;--text:#f4f6ff;--muted:#9ca5c2;--line:rgba(255,255,255,.09);--cyan:#43e8f5;--purple:#8b5cf6;--pink:#ff4fa3;--lime:#b8f36b;--radius:22px}
@@ -95,12 +95,31 @@ body.lock .veil{display:block}body.lock{overflow:hidden}
 .intro .tagline{font-size:17px;margin-top:6px}
 .intro .desc{font-size:14px;margin-top:8px;max-width:80ch}
 .intro .chips{margin-top:12px}
+.flinks a{color:var(--muted)}.flinks a:hover{color:#fff}
+.facts [hidden]{display:none}
+.recbtn{margin-top:16px;width:100%;cursor:pointer;color:#fff;font:inherit;font-weight:800;font-size:14px;padding:13px 16px;border-radius:13px;background:color-mix(in srgb,var(--accent) 16%,#111528);border:1px solid color-mix(in srgb,var(--accent) 55%,transparent)}.recbtn:hover{border-color:var(--accent)}
+.skip{position:absolute;left:-999px;top:8px}.skip:focus{left:12px;z-index:300;background:#fff;color:#000;padding:8px 12px;border-radius:8px;font-weight:800}
+.faq{margin:34px 0 0}.faq h2{margin:0 0 16px;font-size:22px}
+.faq details{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:0 18px;margin:0 0 10px}
+.faq summary{cursor:pointer;padding:15px 0;font-weight:750;font-size:15px;list-style:none}.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";float:right;color:var(--cyan);font-size:18px}.faq details[open] summary::after{content:"–"}
+.faq details[open]{border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+.faq p{margin:0 0 16px;color:#c4cae0;font-size:14px}
 .win.big{box-shadow:0 0 0 100vmax #02030af2}
 .slot{width:min(100%,1000px,max(680px,calc((100vh - 380px)*16/9)))}
 @media(max-width:700px){.slot{width:100%}}
+.tap{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:center/cover;text-align:center;padding:16px}
+.tap[hidden]{display:none}.tap:before{content:"";position:absolute;inset:0;background:#090b16b0}.tap>*{position:relative}
+#play{border:0;border-radius:16px;padding:16px 34px;font:inherit;font-size:18px;font-weight:900;color:#080b18;background:var(--accent);box-shadow:0 10px 30px color-mix(in srgb,var(--accent) 45%,transparent)}
+.tap small{color:#e6e9f7;font-size:13px;font-weight:700}
+body.touch #rl,body.touch #fs{display:none}body.touch .win:not(.big) #big{display:none}body.touch .win.big #sh{display:none}
+body.touch .frame{aspect-ratio:16/10;height:auto}
+@media(pointer:coarse){.win.big{inset:auto;top:0;left:0;width:100%;height:100vh;height:100dvh;border-radius:0;box-shadow:none;padding:max(6px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))}
+.win.big .bar{padding:0 2px 6px}.win.big .bar strong{font-size:13px}.win.big .tools button{padding:6px 14px}.win.big .frame{border-radius:10px}}
 </style>
-</head>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "Sobrevive 60 segundos", "description": "Esquiva a los enemigos y resiste 60 segundos en una arena de neón. Con el tiempo encontrarás un arma y desbloquearás habilidades como el Dash. Tiene cuatro dificultades y 99 niveles.", "url": "https://progame-arcade.netlify.app/juego/sobrevive-60/index.html", "image": "https://progame-arcade.netlify.app/assets/img/sobrevive-60-cover.jpg", "genre": ["Acción", "Supervivencia"], "gamePlatform": "Web browser", "applicationCategory": "Game", "operatingSystem": "Any", "inLanguage": "es", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "PROGAME Arcade", "url": "https://progame-arcade.netlify.app/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://progame-arcade.netlify.app/"}, {"@type": "ListItem", "position": 2, "name": "Sobrevive 60 segundos", "item": "https://progame-arcade.netlify.app/juego/sobrevive-60/index.html"}]}</script></head>
 <body>
+<a class="skip" href="#slot">Saltar al juego</a>
 <div class="wrap"><header>
   <a class="brand" href="../../index.html"><span class="brand-mark">🎮</span><span>PROGAME</span><span>ARCADE</span></a>
   <a class="back" href="../../index.html#juegos">← Todos los juegos</a>
@@ -119,18 +138,19 @@ body.lock .veil{display:block}body.lock{overflow:hidden}
       <div class="win" id="win">
         <div class="bar">
           <strong><i></i>Sobrevive 60 segundos</strong>
-          <div class="tools"><button id="rl" type="button">Reiniciar</button><button id="big" type="button">Agrandar</button><button id="fs" type="button">Pantalla completa</button></div>
+          <div class="tools"><button id="rl" type="button">Reiniciar</button><button id="big" type="button">Agrandar</button><button id="sh" type="button">Compartir</button><button id="fs" type="button">Pantalla completa</button></div>
         </div>
         <div class="frame">
-          <iframe id="game" src="../../games/sobrevive-60/index.html" title="Sobrevive 60 segundos" allow="fullscreen; autoplay; gamepad" allowfullscreen></iframe>
+          <iframe id="game" data-src="../../games/sobrevive-60/index.html" title="Sobrevive 60 segundos" allow="fullscreen; autoplay; gamepad" allowfullscreen></iframe>
           <div class="hint" id="hint">Haz clic dentro del juego para activar el teclado</div>
+          <div class="tap" id="tap" hidden style="background-image:url('../../assets/img/sobrevive-60-cover.jpg')"><button id="play" type="button">▶ JUGAR</button><small>Se abre en pantalla completa</small></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<main class="wrap main">
+<main class="wrap main" style="--accent:#8b5cf6">
   <section class="info">
     <div class="box">
       <h2>Cómo se juega</h2>
@@ -144,17 +164,20 @@ body.lock .veil{display:block}body.lock{overflow:hidden}
         <div><dt>Modo</dt><dd>Un jugador</dd></div>
         <div><dt>Dispositivos</dt><dd>PC y celular</dd></div>
         <div><dt>Precio</dt><dd>Gratis, sin descargas</dd></div>
+        <div id="rec-row" hidden><dt>Tu récord</dt><dd id="rec-val"></dd></div>
       </dl>
+      <button id="rec-sh" class="recbtn" type="button" hidden>🏆 Retar a un amigo con mi récord</button>
       <div class="gallery"><img src="../../assets/img/sobrevive-60-play.jpg" alt="Más capturas de Sobrevive 60 segundos" loading="lazy"></div>
     </div>
   </section>
+  <section class="faq"><h2>Preguntas frecuentes</h2><details><summary>¿Sobrevive 60 segundos es gratis?</summary><p>Sí. Se juega gratis desde el navegador, sin descargas ni registro.</p></details><details><summary>¿Cómo se juega?</summary><p>Muévete con WASD o las flechas (o con el joystick en pantalla en el celular), esquiva a los enemigos y aguanta hasta que el cronómetro llegue a cero. Más adelante encontrarás un arma y desbloquearás habilidades como el Dash.</p></details><details><summary>¿Qué dificultades tiene?</summary><p>Cuatro: Fácil, Intermedio, Difícil y Extremo, con 99 niveles. Puedes elegir la dificultad antes de empezar.</p></details><details><summary>¿Se guarda mi progreso?</summary><p>Sí, en tu navegador: se guarda una campaña por dificultad. Si borras los datos del navegador o cambias de dispositivo, empezarás de nuevo.</p></details><details><summary>¿Está en español?</summary><p>Sí. Dentro del juego hay un selector de idioma con español, inglés, portugués y francés.</p></details><details><summary>¿Por qué el juego no responde al teclado?</summary><p>Haz clic una vez dentro de la ventana del juego para que reciba las teclas. Si usas celular, toca el botón JUGAR y se abrirá a pantalla completa.</p></details></section>
   <section class="more">
     <h2>Más juegos</h2>
     <div class="more-grid"><a class="mini" href="../underground-worm/index.html"><img src="../../assets/img/underground-worm-cover.jpg" alt="" loading="lazy"><span><b>Underground Worm</b><small>Acción · Estrategia</small></span></a><a class="mini" href="../dino-blades/index.html"><img src="../../assets/img/dino-blades-cover.jpg" alt="" loading="lazy"><span><b>Dino Blades</b><small>Supervivencia · Batalla en la arena</small></span></a></div>
   </section>
 </main>
 
-<div class="wrap"><footer><span>© 2026 PROGAME ARCADE. Hecho para jugar.</span><span>Juega desde tu navegador · Sin descargas</span></footer></div>
+<div class="wrap"><footer><span>© 2026 PROGAME ARCADE. Hecho para jugar.</span><span class="flinks"><a href="../../sobre-nosotros.html">Sobre nosotros</a> · <a href="../../privacidad.html">Privacidad</a> · <a href="../../contacto.html">Contacto</a></span></footer></div>
 
 <script>
 const f=document.getElementById('game'),h=document.getElementById('hint'),w=document.getElementById('win'),s=document.getElementById('slot'),b=document.getElementById('big');
@@ -165,6 +188,30 @@ b.onclick=()=>big(!w.classList.contains('big'));
 addEventListener('keydown',e=>{if(e.key==='Escape'&&w.classList.contains('big'))big(false)});
 document.getElementById('fs').onclick=()=>{const r=f.requestFullscreen||f.webkitRequestFullscreen;if(r)r.call(f)};
 document.getElementById('rl').onclick=()=>{h.hidden=false;f.src=f.src};
+document.getElementById('sh').onclick=async e=>{const b=e.currentTarget,d={title:document.title,text:'Juega Sobrevive 60 segundos gratis en PROGAME Arcade',url:location.href};try{if(navigator.share){await navigator.share(d);return}await navigator.clipboard.writeText(d.url);b.textContent='¡Enlace copiado!'}catch(x){if(x&&x.name==='AbortError')return;prompt('Copia este enlace:',d.url)}setTimeout(()=>b.textContent='Compartir',2200)};
+try{localStorage.setItem('progame-last','sobrevive-60');const o=JSON.parse(localStorage.getItem('progame-plays')||'{}');o['sobrevive-60']=(o['sobrevive-60']||0)+1;localStorage.setItem('progame-plays',JSON.stringify(o))}catch(x){}
+</script>
+<script>
+(()=>{const touch=matchMedia('(pointer:coarse)').matches,f=document.getElementById('game'),w=document.getElementById('win'),b=document.getElementById('big'),tap=document.getElementById('tap'),h=document.getElementById('hint'),LAND=false;
+const start=()=>{if(!f.getAttribute('src'))f.src=f.dataset.src};
+if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('../../sw.js').catch(()=>{});
+if(!touch){start();return}
+document.body.classList.add('touch');tap.hidden=false;h.hidden=true;
+async function open(){start();tap.hidden=true;window.big(true);try{await w.requestFullscreen({navigationUI:'hide'});if(LAND&&screen.orientation&&screen.orientation.lock)await screen.orientation.lock('landscape')}catch(e){}}
+function close(){try{if(document.fullscreenElement)document.exitFullscreen();if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock()}catch(e){}f.removeAttribute('src');f.src='about:blank';tap.hidden=false;f.removeAttribute('src')}
+document.getElementById('play').onclick=open;
+b.onclick=()=>{if(w.classList.contains('big')){window.big(false);close()}else open()};
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&w.classList.contains('big')){window.big(false);close()}});
+})();
+</script>
+<script>
+(()=>{const S='sobrevive-60',T=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},btn=document.getElementById('rec-sh'),row=document.getElementById('rec-row');
+function rec(){if(S==='sobrevive-60'){const p=T('sobrevive60-progress',null);if(p&&p.modes){const l=Math.max(...Object.values(p.modes).map(x=>(x&&x.unlocked)||1));if(l>1)return['Nivel '+l,'llegué al nivel '+l]}}
+if(S==='dino-blades'){const d=T('dinoScores',[]);if(d.length){const m=Math.max(...d.map(x=>x.score||0));if(m>0)return[m+' puntos','conseguí '+m+' puntos']}}return null}
+function upd(){const r=rec();if(!r){row.hidden=true;btn.hidden=true;return}row.hidden=false;btn.hidden=false;document.getElementById('rec-val').textContent=r[0];btn.dataset.t=r[1]}
+upd();setInterval(upd,4000);
+btn.onclick=async()=>{const t='🏆 En PROGAME Arcade '+btn.dataset.t+' jugando Sobrevive 60 segundos. ¿Me superas?';try{if(navigator.share)await navigator.share({title:'Sobrevive 60 segundos',text:t,url:location.href});else{await navigator.clipboard.writeText(t+' '+location.href);const o=btn.textContent;btn.textContent='¡Copiado! Pégalo en tu chat';setTimeout(()=>btn.textContent=o,2200)}}catch(e){}};
+})();
 </script>
 </body>
 </html>
