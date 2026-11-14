@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://progame-arcade.netlify.app/sitemap.xml

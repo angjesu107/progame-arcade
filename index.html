@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#090b16">
   <meta name="description" content="PROGAME: juega gratis a videojuegos arcade directamente desde tu navegador.">
-  <meta property="og:type" content="website"><meta property="og:title" content="PROGAME — Arcade HTML5"><meta property="og:description" content="Juegos arcade gratis en tu navegador. Sin descargas ni registro.">
+  <link rel="canonical" href="https://progame-arcade.netlify.app/"><meta property="og:url" content="https://progame-arcade.netlify.app/"><meta property="og:image" content="https://progame-arcade.netlify.app/assets/img/og-progame.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://progame-arcade.netlify.app/assets/img/og-progame.jpg"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta property="og:type" content="website"><meta property="og:title" content="PROGAME — Arcade HTML5"><meta property="og:description" content="Juegos arcade gratis en tu navegador. Sin descargas ni registro.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎮%3C/text%3E%3C/svg%3E">
   <title>PROGAME — Arcade HTML5</title>
   <style>
@@ -135,13 +135,33 @@
     .flinks a{color:var(--muted)}.flinks a:hover{color:#fff}
     @media(max-width:600px){.resume img{width:64px}.resume i{padding:9px 11px}.synth{top:420px}}
     @media(prefers-reduced-motion:reduce){.synth:before{animation:none}}
+
+    /* --- ronda 6: avisos, misión y extras --- */
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+    .sub{display:flex;gap:10px;flex-wrap:nowrap;justify-content:flex-end;align-items:center}
+    .sub input[type=email]{width:260px;min-width:0;background:#0b0e1e;border:1px solid var(--line);border-radius:13px;color:#fff;padding:14px 15px;font:inherit;font-size:14px;outline:none}
+    .sub input[type=email]:focus{border-color:#43e8f577;box-shadow:0 0 0 3px #43e8f512}
+    .sub .btn{border:0;cursor:pointer;font-family:inherit}
+    .sub-ok{margin:0;color:var(--lime);font-weight:800;font-size:15px}
+    .mission{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:7px 13px;border-radius:30px;background:#ffffff08;border:1px solid var(--line);font-size:12px;color:var(--muted)}
+    .m-dots{display:flex;gap:5px}.m-dots i{width:11px;height:11px;border-radius:50%;background:#ffffff1f;border:1px solid #ffffff2a;transition:.3s}
+    .m-dots i.on{background:var(--c);border-color:var(--c);box-shadow:0 0 10px var(--c)}
+    .mission b{color:#fff}.mission.done{border-color:#b8f36b66;color:var(--lime)}
+    .turbo .synth:before{animation-duration:.7s}.turbo .brand-mark{animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @media(max-width:700px){.sub{flex-wrap:wrap;justify-content:stretch;width:100%}.sub input[type=email]{width:100%}.sub .btn{width:100%}}
+    @media(prefers-reduced-motion:reduce){.turbo .brand-mark{animation:none}}
+    #install{cursor:pointer;font-family:inherit}#install[hidden]{display:none}
+    /* polish-movil */
+    .card[data-name="underground worm"] .cover-label{top:auto;bottom:12px}
+    @media(max-width:600px){.stat{padding:14px 12px}.stat strong{font-size:15px;line-height:1.2}.stat span{font-size:9px;letter-spacing:.7px;line-height:1.4}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <a class="brand" href="#"><span class="brand-mark">▶</span><span>PRO<span>GAME</span></span></a>
-      <nav><a href="#inicio">Inicio</a><a href="#juegos">Juegos</a><a href="#sobre">Sobre PROGAME</a></nav>
+      <nav><a href="#inicio">Inicio</a><a href="#juegos">Juegos</a><a href="sobre-nosotros.html">Sobre PROGAME</a></nav>
       <div class="header-right"><span class="status"><i class="dot" style="display:inline-block;margin-right:6px"></i> 3 JUEGOS DISPONIBLES</span><button class="menu-btn" id="menuBtn" aria-label="Ir a juegos">☰</button></div>
     </header>
 
@@ -152,7 +172,7 @@
           <div class="eyebrow"><span class="dot"></span> ARCADE HTML5 · JUEGA GRATIS</div>
           <h1>EL JUEGO<br>EMPIEZA <em>AQUÍ.</em></h1>
           <p class="hero-copy">Entra, elige tu desafío y demuestra de qué estás hecho. Juegos arcade para disfrutar directamente desde tu navegador, sin descargas.</p>
-          <div class="hero-actions"><a class="btn btn-primary" href="#juegos">EXPLORAR JUEGOS <span>↗</span></a><a class="btn btn-ghost" href="#sobre">CONÓCENOS</a></div>
+          <div class="hero-actions"><a class="btn btn-primary" href="#juegos">EXPLORAR JUEGOS <span>↗</span></a><a class="btn btn-ghost" href="sobre-nosotros.html">CONÓCENOS</a><button class="btn btn-ghost" id="install" type="button" hidden>📲 INSTALAR APP</button></div>
         </div>
         <div class="hero-art" id="showcase" aria-label="Avance de los juegos" style="--c:#a78bfa">
           <a class="slide on" href="juego/sobrevive-60/index.html" data-c="#a78bfa" aria-label="Jugar Sobrevive 60 segundos">
@@ -179,7 +199,7 @@
 
       <section id="juegos">
         <div class="section-head">
-          <div><div class="section-kicker">SELECCIONA TU PARTIDA</div><h2>Explora nuestros juegos</h2><p class="section-sub">Tu próxima partida está a un clic de distancia.</p></div>
+          <div><div class="section-kicker">SELECCIONA TU PARTIDA</div><h2>Explora nuestros juegos</h2><p class="section-sub">Tu próxima partida está a un clic de distancia.</p><div class="mission" id="mission" title="Abre los tres juegos para completar la misión"><span class="m-dots"><i></i><i></i><i></i></span><span class="m-txt">Misión: prueba los 3 juegos · <b>0/3</b></span></div></div>
         </div>
         <a class="resume" id="resume" hidden></a>
         <div class="tools">
@@ -204,8 +224,12 @@
       </section>
 
       <section class="feature-strip" id="sobre">
-        <div><h3>Tu próxima partida te está esperando.</h3><p>Elige un juego, entra a la acción y vuelve cuando quieras.<br>Estamos empezando: pronto habrá nuevos desafíos.</p></div>
-        <a class="btn btn-primary" href="#juegos">VAMOS A JUGAR ↗</a>
+        <div><h3>¿Quieres saber cuándo hay un juego nuevo?</h3><p>Déjanos tu correo y te avisamos. Sin spam, solo juegos.</p></div>
+        <form class="sub" name="novedades" method="POST" action="index.html?suscrito=1#sobre" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="novedades"><input class="hp" name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="email" name="email" required placeholder="tu@correo.com" aria-label="Tu correo" maxlength="120" autocomplete="email"><button class="btn btn-primary" type="submit">AVÍSAME ↗</button>
+        </form>
+        <p class="sub-ok" hidden>¡Listo! Te avisaremos cuando haya novedades. 🎮</p>
       </section>
     </main>
     <footer><span>© <span id="year"></span> PROGAME ARCADE. Hecho para jugar.</span><span class="flinks"><a href="sobre-nosotros.html">Sobre nosotros</a> · <a href="privacidad.html">Privacidad</a> · <a href="contacto.html">Contacto</a></span></footer>
@@ -255,6 +279,20 @@ el.innerHTML='<img src="assets/img/'+L.slug+'-cover.jpg" alt=""><span><small>SEG
 if(matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches)document.querySelectorAll('.card').forEach(c=>{const sh=document.createElement('i');sh.className='shine';c.appendChild(sh);
 c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.transition='transform .1s ease-out,border-color .22s,box-shadow .22s';c.style.transform='perspective(900px) rotateX('+((.5-y)*7)+'deg) rotateY('+((x-.5)*9)+'deg) translateY(-6px)';c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%')});
 c.addEventListener('pointerleave',()=>{c.style.transition='';c.style.transform=''})});})();
+</script>
+<script>
+(()=>{const S=[['sobrevive-60','#a78bfa'],['underground-worm','#ff9b4a'],['dino-blades','#6ee07a']];
+try{const P=JSON.parse(localStorage.getItem('progame-plays')||'{}'),m=document.getElementById('mission');let n=0;
+m.querySelectorAll('.m-dots i').forEach((d,k)=>{if(P[S[k][0]]>0){n++;d.classList.add('on');d.style.setProperty('--c',S[k][1])}});
+if(n===3){m.classList.add('done');m.querySelector('.m-txt').innerHTML='🏆 ¡Arcade completado! Probaste los 3 juegos'}else m.querySelector('b').textContent=n+'/3'}catch(e){}
+if(/suscrito/.test(location.search)){document.querySelector('.sub').hidden=true;document.querySelector('.sub-ok').hidden=false}
+addEventListener('keydown',e=>{if(e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();const q=document.getElementById('search');q&&q.focus()}});
+const K=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let i=0;
+addEventListener('keydown',e=>{i=(e.key===K[i]||e.key.toLowerCase()===K[i])?i+1:(e.key===K[0]?1:0);if(i===K.length){i=0;const on=document.body.classList.toggle('turbo');if(window.toast)toast(on?'🎮 ¡Modo turbo activado!':'Modo turbo desactivado')}});})();
+</script>
+<script>
+if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+let ip;addEventListener('beforeinstallprompt',e=>{e.preventDefault();ip=e;const i=document.getElementById('install');i.hidden=false;i.onclick=async()=>{i.hidden=true;ip.prompt();await ip.userChoice;ip=null}});
 </script>
 </body>
 </html>
